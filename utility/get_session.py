@@ -20,11 +20,13 @@ print('\nOK, this is your session, if you need it for anything else:\n ========\
 
 # dump json for local dev
 local = {
-  "TG_API_ID": api_id,
-  "TG_API_HASH": api_hash,
-  "TG_SESSION": api_session,
-  "TG_ENTITY": entity,
-  "TG_MESSAGE": message
+  "Values": {
+    "TG_API_ID": api_id,
+    "TG_API_HASH": api_hash,
+    "TG_SESSION": api_session,
+    "TG_ENTITY": entity,
+    "TG_MESSAGE": message
+  }
 }
 with open('local.settings.json', 'w+') as file:
     json.dump(local, file, indent=2)
