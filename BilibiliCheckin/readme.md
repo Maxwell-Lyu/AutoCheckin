@@ -1,6 +1,6 @@
-# AutoCheckin - Telegram
+# AutoCheckin - Bilibili
 
-The `AutoCheckin` for `Telegram`. 
+The `AutoCheckin` for `Bilibili`. 
 
 ## How it checks you in
 
