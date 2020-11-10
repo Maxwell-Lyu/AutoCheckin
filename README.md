@@ -1,6 +1,7 @@
 # Telegram Auto Check-in
 
 A simple python function to check you in for anything in telegram, when deployed using **Azure Functions**
+![CI](https://github.com/Maxwell-Lyu/AutoCheckin/workflows/CI/badge.svg)
 
 ## Usage: 
 
