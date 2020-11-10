@@ -18,6 +18,7 @@ async def worker(loop):
         await conv.send_message(message)
         response = await conv.get_response()
         logging.info("[INFO] "+ response.text)
+        await conv.mark_read()
 
 def main(mytimer: func.TimerRequest) -> None:
     utc_timestamp = datetime.datetime.utcnow().replace(
