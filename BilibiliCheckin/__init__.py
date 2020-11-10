@@ -15,9 +15,11 @@ def main(mytimer: func.TimerRequest) -> None:
     response = requests.get("https://api.live.bilibili.com/sign/doSign", cookies={"SESSDATA": sessdata})
     content = json.loads(response.text)
     if content["code"] == 0:
-      logging.info("[SUCC] " + content["data"]["text"] + "," + content["data"]["specialText"])
+      logging.info(content["data"]["text"] + "," + content["data"]["specialText"])
+    elif content["code"] < 0: 
+      logging.error(content["message"])
     else:
-      logging.error("[FAIL] " + content["message"])
+      logging.warn(content["message"])
 
     if mytimer.past_due:
         logging.info('The timer is past due!')
