@@ -1,11 +1,17 @@
-# TimerTrigger - Python
+# AutoCheckin - Telegram
 
-The `TimerTrigger` makes it incredibly easy to have your functions executed on a schedule. This sample demonstrates a simple use case of calling your function every 5 minutes.
+The `AutoCheckin` for `Telegram`. 
 
-## How it works
+## How it checks you in
 
-For a `TimerTrigger` to work, you provide a schedule in the form of a [cron expression](https://en.wikipedia.org/wiki/Cron#CRON_expression)(See the link for full details). A cron expression is a string with 6 separate expressions which represent a given schedule via patterns. The pattern we use to represent every 5 minutes is `0 */5 * * * *`. This, in plain text, means: "When seconds is equal to 0, minutes is divisible by 5, for any hour, day of the month, month, day of the week, or year".
+Using your cookie `SESSDATA`, this function sends a request to check you in
 
-## Learn more
+## Environ to set
 
-<TODO> Documentation
+|name|value|
+|-|-|
+|BL_SESSDATA|cookie achieved using devtool in your browser |
+
+You should first log yourself in at [Bilibili](https://www.bilibili.com/).  
+Then, open the devtool in your browser, turn to `Application` > `Storage` > `Cookies` > `https://www.bilibili.com`.  
+The cookie named `SESSDATA` is the environ you need.
