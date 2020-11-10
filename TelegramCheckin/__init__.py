@@ -2,7 +2,7 @@ import asyncio, selectors
 import os
 import datetime
 import logging
-from telethon.sync import TelegramClient
+from telethon.sync import TelegramClient, Conversation
 from telethon.sessions import StringSession
 import azure.functions as func
 
@@ -12,8 +12,12 @@ async def worker(loop):
     api_session = os.environ['TG_SESSION']
     entity      = os.environ['TG_ENTITY']
     message     = os.environ['TG_MESSAGE']
-    async with TelegramClient(StringSession(api_session), api_id, api_hash, loop=loop) as client:
-        await client.send_message(entity, message)
+    client = TelegramClient(StringSession(api_session), api_id, api_hash, loop=loop)
+    await client.connect()
+    async with client.conversation(entity=entity) as conv:
+        await conv.send_message(message)
+        response = await conv.get_response()
+        logging.info("[INFO] "+ response.text)
 
 def main(mytimer: func.TimerRequest) -> None:
     utc_timestamp = datetime.datetime.utcnow().replace(
