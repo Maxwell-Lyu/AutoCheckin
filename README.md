@@ -37,3 +37,5 @@ python get_session.py
 `utility/remote.settings.json` contains configurations for azure function app, copy the lines and add into the editor `Configuration > Application settings > Advanced edit`. Pay attention to commas if you cannot submit the settings
 
 ### 6. Have fun
+
+<TODO> rewrite this readme
