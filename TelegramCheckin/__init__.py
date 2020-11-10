@@ -17,7 +17,7 @@ async def worker(loop):
     async with client.conversation(entity=entity) as conv:
         await conv.send_message(message)
         response = await conv.get_response()
-        logging.info("[INFO] "+ response.text)
+        logging.info(response.text)
         await conv.mark_read()
 
 def main(mytimer: func.TimerRequest) -> None:
