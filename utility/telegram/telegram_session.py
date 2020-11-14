@@ -31,9 +31,9 @@ local = {
         "TG_MESSAGE": message
     }
 }
-with open('local.settings.json', 'w+') as file:
+with open('local.settings.partial.json', 'w+') as file:
     json.dump(local, file, indent=2)
-print('+ local.settings.json: generated for local.settings.json, mix into local.settings.json')
+print('+ local.settings.partial.json: generated for local.settings.json, mix into local.settings.json')
 
 # dump json for remote deploy
 remote = [
@@ -63,6 +63,6 @@ remote = [
         "slotSetting": False
     }
 ]
-with open('remote.settings.json', 'w+') as file:
+with open('remote.settings.partial.json', 'w+') as file:
     json.dump(remote, file, indent=2)
-print('+ remote.settings.json: generated for azure function configuration, mix into \"Advanced edit\"')
+print('+ remote.settings.partial.json: generated for azure function configuration, mix into \"Advanced edit\"')
