@@ -5,7 +5,7 @@ import json
 
 # login using webdriver
 login_page = 'https://www.tsdm39.net/member.php?mod=logging&action=login&mobile=yes'
-driver = Chrome()
+driver = Chrome('..\chromedriver.exe')
 wait = WebDriverWait(driver, 300)
 driver.get(login_page)
 wait.until(lambda driver: driver.current_url != login_page)
