@@ -30,8 +30,8 @@ def main(mytimer: func.TimerRequest) -> None:
     utc_timestamp = datetime.datetime.utcnow().replace(
         tzinfo=datetime.timezone.utc).isoformat()
 
-    auth = os.environ["TS_AUTH"]
-    saltkey = os.environ["TS_SALTKEY"]
+    auth = os.environ['TS_AUTH']
+    saltkey = os.environ['TS_SALTKEY']
 
     cookies = {
         's_gkr8_f779_auth': auth,
@@ -43,13 +43,13 @@ def main(mytimer: func.TimerRequest) -> None:
         }
 
     content = requests.get('https://www.tsdm39.net/plugin.php?id=dsu_paulsign:sign&mobile=yes', cookies=cookies, headers=headers).text
-    position = content.find("name=\"formhash\" value=\"")
+    position = content.find('name=\"formhash\" value=\"')
     if position > 0:
         formhash = content[position + 23: position + 31]
         response = requests.post('https://www.tsdm39.net/plugin.php?id=dsu_paulsign:sign&mobile=yes&operation=qiandao&infloat=0&inajax=0', 
             cookies=cookies, 
             headers=headers,
-            data={"formhash": formhash,"qdxq": "kx","qdmode": "3"})
+            data={'formhash': formhash,'qdxq': 'kx','qdmode': '3'})
         result = ResultParser().feed(response.text)
         if result is not None:
             logging.info(result)
