@@ -128,4 +128,6 @@ obj
 appsettings.json
 local.settings.json
 remote.settings.json
+local.settings.partial.json
+remote.settings.partial.json
 .python_packages
