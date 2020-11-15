@@ -1,6 +1,6 @@
 # This is a basic workflow to help you get started with Actions
 
-name: CI
+name: CD
 
 # Controls when the action will run. Triggers the workflow on push or pull request
 # events but only for the master branch
@@ -17,7 +17,7 @@ env:
   PYTHON_VERSION: '3.7'                 # set this to the python version to use (supports 3.6, 3.7, 3.8)
 
 jobs:
-  build-and-deploy:
+  deploy-to-azure-functions:
     runs-on: ubuntu-latest
     steps:
     - name: 'Checkout GitHub Action'
