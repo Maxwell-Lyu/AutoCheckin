@@ -55,8 +55,6 @@ def main(mytimer: func.TimerRequest) -> None:
             logging.info(result)
         else:
             logging.error(result)
-            with open(utc_timestamp + '_fail.html', 'w', encoding='utf-8') as file:
-                file.write(response.text)
     else:
         if content.find('您今天已经签到过了或者签到时间还未开始') >= 0:
             logging.error('您今天已经签到过了或者签到时间还未开始')
