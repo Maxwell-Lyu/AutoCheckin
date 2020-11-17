@@ -50,13 +50,13 @@ def main(mytimer: func.TimerRequest) -> None:
             cookies=cookies, 
             headers=headers,
             data={'formhash': formhash,'qdxq': 'kx','qdmode': '3'})
-        result = ResultParser().feed(response.text)
-        if result is not None:
+        result = ResultParser().feed(response.text) or '未知错误，请联系开发者'
+        if result.find('恭喜你签到成功!') > 0:
             logging.info(result)
         else:
+            logging.error(result)
             with open(utc_timestamp + '_fail.html', 'w', encoding='utf-8') as file:
                 file.write(response.text)
-            logging.error('在获取签到界面成功时签到失败，请联系开发者')
     else:
         if content.find('您今天已经签到过了或者签到时间还未开始') > 0:
             logging.error('您今天已经签到过了或者签到时间还未开始')
