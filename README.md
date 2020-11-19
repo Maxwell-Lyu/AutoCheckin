@@ -1,42 +1,54 @@
-# Telegram Auto Check-in
+# AutoCheckin - 自动签到
 
-A simple python function to check you in for anything in telegram, when deployed using **Azure Functions**
-![CI](https://github.com/Maxwell-Lyu/AutoCheckin/workflows/CI/badge.svg)
+一系列自动签到函数, 基于Azure Functions实现每日签到   
+A group of python function to check you in, using Azure Functions
 
-## Usage: 
+[![Python](https://img.shields.io/badge/Python%20-%2314354C.svg?&style=for-the-badge&logo=python&logoColor=white)](https://www.python.org/)
+[![Make with love](https://img.shields.io/badge/made%20with-vscode-%23007ACC?&style=for-the-badge&logo=visual-studio-code)](https://code.visualstudio.com/)
+[![Azure Functions](https://img.shields.io/badge/Azure%20Functions%20-%230072C6.svg?&style=for-the-badge&logo=azure-functions&logoColor=white)](https://azure.microsoft.com/services/functions/)
+![GitHub Workflow Status](https://img.shields.io/github/workflow/status/Maxwell-Lyu/AutoCheckin/CD?label=deployment&logo=github-actions&logoColor=white&style=for-the-badge)
 
-### 1. Create a function in Azure that is triggered by a timer
+## Now supporting - 支持的服务
 
-[Microsoft Docs](https://docs.microsoft.com/en-us/azure/azure-functions/functions-create-scheduled-function)  
-When created, click `Functions > Functions > Develop Locally` in your Function App's control panel  
-Follow the instructions to create a default function app  
-You may test run, but do not deploy the default function
+|Function|Description|
+|-|-|-|
+|BilibiliCheckin|Bilibili弹幕网-直播每日签到|
+|TelegramCheckin|Telegram-向bot发指定消息签到|
+|TSDMCheckin|天使动漫论坛-每日签到|
+|TSDMLabor|天使动漫论坛-打工|
 
-### 2. Clone this Repo
+## Usage - 使用说明
 
-### 3. Copy files in this repo into your project
+### 1. Create a function app in Azure - 创建函数应用
 
-+ delete your default function
-+ rename TelegramCheckin at your convenience
+[Microsoft Docs](https://docs.microsoft.com/azure/azure-functions/functions-create-scheduled-function)   
+Create an empty function app, with attention to these points:
++ choose `Consumption plan` for hosting plan
++ choose `Python` as your runtime
 
-### 4. Generate configuration files
+创建空的函数应用, 并请注意以下几点
++ 在`正在承载`选择`消耗计划`
++ 在运行时环境选择`Python`
 
-```bash
-cd utility
-python get_session.py
-# follow instruction prompted by get_session.py
-```
-`gen_session.py` will give your configuration a test drive. If you cannot get desired result(a check-in message sent to your desired account using your identity), check the configurations and try again.  
-**ATTENTION NEEDED**: the files `utility/local.settings.json`, `utility/remote.settings.json` contains sensitive data, must be kept as top-secret
 
-### 5. Debug or deploy
+### 2. Clone this repo - 克隆该项目
 
-#### Debug
-`utility/local.settings.json` contains environment variables needed for local dev, copy the lines under `Values` and add the lines under `Values` in file `local.settings.json`
+### 3. Open this repo using VSCode - 使用VSCode打开该项目
 
-#### Depoly
-`utility/remote.settings.json` contains configurations for azure function app, copy the lines and add into the editor `Configuration > Application settings > Advanced edit`. Pay attention to commas if you cannot submit the settings
+Install extension `Azure Functions` and connect to your function app  
+安装拓展插件`Azure Functions`并连接到您的函数应用  
 
-### 6. Have fun
+### 4. Disable functions you dont need - 禁用您不需要的函数
 
-<TODO> rewrite this readme
+In the VSCode's azure panel, right click on the functions to disable it   
+在VSCode的azure面板中, 右键您不需要的函数以禁用之
+
+### 5. Debug or deploy - 测试或部署
+
+Refer to readme in each function for detailed instructions on configuration  
+参阅各个函数自己的readme, 获取详细配置指导
+
+Why there are only instructions in English? Cuz I'm lazy.  
+为什么只有英文指导? 因为我懒, 一开始用英文写, 懒得翻译了
+
+### 6. Have fun - 爽歪歪
