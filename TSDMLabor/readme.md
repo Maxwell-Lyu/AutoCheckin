@@ -11,12 +11,12 @@ I strongly suggest you to use another labor script that employs `selenium` to re
 Okay, here's the real deal:  
 + count `class="npadv"` for `num_adv` which is the number of jobs
 + do `num_adv` times `requests.post(..., {'act': 'clickad'})` to trick the server into believing you are doing jobs one-by-one
-+ do `requests.post(..., {'act': 'getcre'})` to trick the server to give you result
++ do `requests.post(..., {'act': 'getcre'})` to trick the server to give you credit
 
 To TSDM developers:   
 + You guys really need to improve the checking logic. From my perspective, your logic works like this:
     + for a session defined using `xxxx_sid`, maintain a counter `clicknum` for jobs done, by increasing it once a `requests.post(..., {'act': 'clickad'})` is done
-    + when `requests.post(..., {'act': 'getcre'})` arrives, give credit if `clicknum` is BIGGER than `advnum`, and reset the timer as 6 hours
+    + when `requests.post(..., {'act': 'getcre'})` arrives, give credit if `clicknum` is bigger than or equal `advnum`, and reset the timer as 6 hours
 + What you guys can do with this: count the click using a redirection
     + when users click on an ad, they visit a `tsdm` url in a new tab for redirection to the ad
     + increase the counter when the redirection happens
