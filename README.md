@@ -1,5 +1,7 @@
 # AutoCheckin - 自动签到
 
+<div align=center style='margin: 50px'><img width = '150' height ='150' src ="./img/autocheckin.svg"/></div>
+
 一系列自动签到函数, 基于Azure Functions实现每日签到   
 A group of python function to check you in, using Azure Functions
 

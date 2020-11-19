@@ -2,4 +2,6 @@
 .vscode
 local.settings.json
 test
+img
+utility
 .venv
