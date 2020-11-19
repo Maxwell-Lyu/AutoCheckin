@@ -3,27 +3,9 @@ import logging
 import requests
 import re
 import os
-from html.parser import HTMLParser
+from common.ResultParser import TSDMResultParser as parser
 
 import azure.functions as func
-
-class ResultParser(HTMLParser):
-    def __init__(self):
-        HTMLParser.__init__(self)
-        self.result = None
-        self.found = False
-
-    def handle_starttag(self, tag: str, attrs: list) -> None:
-        if tag == 'div' and ('id', 'messagetext') in attrs:
-            self.found = True
-
-    def handle_data(self, data: str) -> None:
-        if self.found and self.lasttag == 'p':
-            self.result, self.found = data, False
-    
-    def feed(self, feed: str) -> str:
-        HTMLParser.feed(self, feed)
-        return self.result
 
 def main(mytimer: func.TimerRequest) -> None:
     utc_timestamp = datetime.datetime.utcnow().replace(
@@ -44,7 +26,7 @@ def main(mytimer: func.TimerRequest) -> None:
         response = requests.post(url=labor_url, headers=headers, cookies=cookies, data={'act': 'clickad'})
     response = requests.post(url=labor_url, headers=headers, cookies=cookies, data={'act': 'getcre'})
     # analyze result
-    result = ResultParser().feed(response.text.replace('<br />', ''))
+    result = parser().feed(response.text.replace('<br />', ''))
     if result.find('恭喜') >= 0:
         logging.info(result)
     else:

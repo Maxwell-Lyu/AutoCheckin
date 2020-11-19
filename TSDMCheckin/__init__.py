@@ -2,28 +2,9 @@ import datetime
 import logging
 import os
 import requests
-from html.parser import HTMLParser
+from common.ResultParser import TSDMResultParser as parser
 
 import azure.functions as func
-
-
-class ResultParser(HTMLParser):
-    def __init__(self):
-        HTMLParser.__init__(self)
-        self.result = None
-        self.found = False
-
-    def handle_starttag(self, tag: str, attrs: list) -> None:
-        if tag == 'div' and ('id', 'messagetext') in attrs:
-            self.found = True
-
-    def handle_data(self, data: str) -> None:
-        if self.found and self.lasttag == 'p':
-            self.result, self.found = data, False
-    
-    def feed(self, feed: str) -> str:
-        HTMLParser.feed(self, feed)
-        return self.result
 
 
 def main(mytimer: func.TimerRequest) -> None:
@@ -50,7 +31,7 @@ def main(mytimer: func.TimerRequest) -> None:
             cookies=cookies, 
             headers=headers,
             data={'formhash': formhash,'qdxq': 'kx','qdmode': '3'})
-        result = ResultParser().feed(response.text) or '未知错误，请联系开发者'
+        result = parser().feed(response.text) or '未知错误，请联系开发者'
         if result.find('恭喜你签到成功!') >= 0:
             logging.info(result)
         else:
@@ -59,7 +40,7 @@ def main(mytimer: func.TimerRequest) -> None:
         if content.find('您今天已经签到过了或者签到时间还未开始') >= 0:
             logging.error('您今天已经签到过了或者签到时间还未开始')
         else:
-            logging.error(ResultParser().feed(content) or '未知错误，请联系开发者')
+            logging.error(parser().feed(content) or '未知错误，请联系开发者')
 
     if mytimer.past_due:
         logging.info('The timer is past due!')
