@@ -51,17 +51,17 @@ def main(mytimer: func.TimerRequest) -> None:
     soup = BeautifulSoup(response.text, 'html.parser')
     soup.select_one("#pwdDefaultEncryptSalt").attrs['value']
     data_login = {
-        'username': username, 
-        'password': encryptAES(password, soup.select_one("#pwdDefaultEncryptSalt").attrs['value']),
-        'lt' : soup.select_one('[name="lt"]').attrs['value'], 
-        'dllt' : soup.select_one('[name="dllt"]').attrs['value'], 
-        'execution' : soup.select_one('[name="execution"]').attrs['value'], 
-        '_eventId' : soup.select_one('[name="_eventId"]').attrs['value'], 
-        'rmShown' : soup.select_one('[name="rmShown"]').attrs['value'], 
+        'username':     username, 
+        'password':     encryptAES(password, soup.select_one("#pwdDefaultEncryptSalt").attrs['value']),
+        'lt' :          soup.select_one('[name="lt"]').attrs['value'], 
+        'dllt' :        soup.select_one('[name="dllt"]').attrs['value'], 
+        'execution' :   soup.select_one('[name="execution"]').attrs['value'], 
+        '_eventId' :    soup.select_one('[name="_eventId"]').attrs['value'], 
+        'rmShown' :     soup.select_one('[name="rmShown"]').attrs['value'], 
     }
 
     response = session.post(url_login, data_login)
-    
+
     if response.status_code == 200:
         logging.info('Login for %s: %d, %s' % (username, response.status_code, response.reason))
     else:
@@ -83,17 +83,16 @@ def main(mytimer: func.TimerRequest) -> None:
 
     # apply
     data = next(x for x in content['data'] if x.get('TJSJ') != '')
-    data['WID'] = content['data'][0]['WID']
-    fields = [
-        'WID', 
-        'CURR_LOCATION', 
-        'IS_TWZC', 
-        'IS_HAS_JKQK', 
-        'JRSKMYS', 
-        'JZRJRSKMYS'
-    ]
+    data_apply = {
+        'WID':              content['data'][0]['WID'], 
+        'CURR_LOCATION':    data['CURR_LOCATION'], 
+        'IS_TWZC':          data['IS_TWZC'], 
+        'IS_HAS_JKQK':      data['IS_HAS_JKQK'], 
+        'JRSKMYS':          data['JRSKMYS'], 
+        'JZRJRSKMYS':       data['JZRJRSKMYS']
+    }
 
-    response = session.get(url_apply, params={key: data[key] for key in fields})
+    response = session.get(url_apply, params=data_apply)
 
     try:
         content = response.json()
