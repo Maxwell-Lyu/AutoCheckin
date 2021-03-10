@@ -23,8 +23,8 @@ def main(mytimer: func.TimerRequest) -> None:
 
     # encrypt func
     def encryptAES(_p0: str, _p1: str) -> str:
-        _chars = list('ABCDEFGHJKMNPQRSTWXYZabcdefhijkmnprstwxyz2345678')
         def _rds(len: int) -> str: 
+            _chars = 'ABCDEFGHJKMNPQRSTWXYZabcdefhijkmnprstwxyz2345678'
             return ''.join(random.choices(_chars, k=len))
         def _gas(data: str, key0: str, iv0: str) -> bytes:
             encrypt = AES.new(key0.strip().encode('utf-8'), AES.MODE_CBC, iv0.encode('utf-8'))
