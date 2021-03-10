@@ -13,7 +13,7 @@ A group of python function to check you in, using Azure Functions
 ## Now supporting - 支持的服务
 
 |Function|Description|
-|-|-|-|
+|-|-|
 |BilibiliCheckin|Bilibili弹幕网-直播每日签到|
 |TelegramCheckin|Telegram-向bot发指定消息签到|
 |TSDMCheckin|天使动漫论坛-每日签到|
