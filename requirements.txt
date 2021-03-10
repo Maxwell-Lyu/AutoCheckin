@@ -5,3 +5,5 @@
 azure-functions
 telethon
 requests
+beautifulsoup4
+pycryptodome
