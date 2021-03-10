@@ -41,11 +41,13 @@ def main(mytimer: func.TimerRequest) -> None:
 
     # login
     response = session.get(url_login)
+
     if response.status_code == 200:
-        logging.info('Open login page success for ' + username)
+        logging.info('Open login page: %d, %s' % (response.status_code, response.reason))
     else:
-        logging.error('Open login page fail for ' + username)
+        logging.error('Open login page: %d, %s' % (response.status_code, response.reason))
         return
+
     soup = BeautifulSoup(response.text, 'html.parser')
     soup.select_one("#pwdDefaultEncryptSalt").attrs['value']
     data_login = {
@@ -57,20 +59,26 @@ def main(mytimer: func.TimerRequest) -> None:
         '_eventId' : soup.select_one('[name="_eventId"]').attrs['value'], 
         'rmShown' : soup.select_one('[name="rmShown"]').attrs['value'], 
     }
+
     response = session.post(url_login, data_login)
+    
     if response.status_code == 200:
-        logging.info('Login success for ' + username)
+        logging.info('Login for %s: %d, %s' % (username, response.status_code, response.reason))
     else:
-        logging.error('Login fail for ' + username)
+        logging.error('Login for %s: %d, %s' % (username, response.status_code, response.reason))
         return
 
     # list
     response = session.get(url_list)
-    content = response.json()
-    if response.status_code == 200 and content['code'] == '0':
-        logging.info('List success for ' + username)
+
+    try:
+        content = response.json()
+    except ValueError:
+        content = {}
+    if response.status_code == 200 and content.get('code') == '0':
+        logging.info('List: %d, %s, %s' % (response.status_code, response.reason, content.get('msg') or 'No messgage available'))
     else:
-        logging.error('List fail for ' + username)
+        logging.error('List: %d, %s, %s' % (response.status_code, response.reason, content.get('msg') or 'No messgage available'))
         return
 
     # apply
@@ -84,12 +92,17 @@ def main(mytimer: func.TimerRequest) -> None:
         'JRSKMYS', 
         'JZRJRSKMYS'
     ]
-    response = session.get('http://ehallapp.nju.edu.cn/xgfw/sys/yqfxmrjkdkappnju/apply/saveApplyInfos.do?' + '&'.join([key + '=' + data[key] for key in fields]))
-    content = response.json()
-    if response.status_code == 200 and content['code'] == '0':
-        logging.info('Apply success for ' + username)
+
+    response = session.get(url_apply, params={key: data[key] for key in fields})
+
+    try:
+        content = response.json()
+    except ValueError:
+        content = {}
+    if response.status_code == 200 and content.get('code') == '0':
+        logging.info('Apply: %d, %s, %s' % (response.status_code, response.reason, content.get('msg') or 'No messgage available'))
     else:
-        logging.error('Apply fail for ' + username)
+        logging.error('Apply: %d, %s, %s' % (response.status_code, response.reason, content.get('msg') or 'No messgage available'))
         return
     pass
 
