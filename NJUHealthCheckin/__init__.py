@@ -2,7 +2,6 @@ import datetime
 import logging
 import os
 import requests
-import requests
 import js2py
 from bs4 import BeautifulSoup
 
