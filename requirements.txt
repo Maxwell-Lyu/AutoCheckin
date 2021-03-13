@@ -6,4 +6,4 @@ azure-functions
 telethon
 requests
 beautifulsoup4
-pycryptodome
+js2py
