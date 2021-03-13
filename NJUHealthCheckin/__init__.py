@@ -49,7 +49,6 @@ def main(mytimer: func.TimerRequest) -> None:
         return
 
     soup = BeautifulSoup(response.text, 'html.parser')
-    soup.select_one("#pwdDefaultEncryptSalt").attrs['value']
     data_login = {
         'username':     username, 
         'password':     encryptAES(password, soup.select_one("#pwdDefaultEncryptSalt").attrs['value']),
