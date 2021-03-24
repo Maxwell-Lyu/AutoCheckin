@@ -10,7 +10,7 @@ Using your cookie `SESSDATA`, this function sends a request to check you in
 
 |name|value|
 |-|-|
-|BL_SESSDATA|cookie achieved using devtool in your browser |
+|BILI_SESSDATA|cookie achieved using devtool in your browser |
 
 You should first log yourself in at [Bilibili](https://www.bilibili.com/).  
 Then, open the devtool in your browser, turn to `Application` > `Storage` > `Cookies` > `https://www.bilibili.com`.  

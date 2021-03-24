@@ -24,11 +24,11 @@ print('\nOK, this is your session, if you need it for anything else:\n ========\
 # dump json for local dev
 local = {
     "Values": {
-        "TG_API_ID": api_id,
-        "TG_API_HASH": api_hash,
-        "TG_SESSION": api_session,
-        "TG_ENTITY": entity,
-        "TG_MESSAGE": message
+        "TLGM_API_ID": api_id,
+        "TLGM_API_HASH": api_hash,
+        "TLGM_SESSION": api_session,
+        "TLGM_ENTITY": entity,
+        "TLGM_MESSAGE": message
     }
 }
 with open('local.settings.partial.json', 'w+') as file:
@@ -38,27 +38,27 @@ print('+ local.settings.partial.json: generated for local.settings.json, mix int
 # dump json for remote deploy
 remote = [
     {
-        "name": "TG_API_ID",
+        "name": "TLGM_API_ID",
         "value": api_id,
         "slotSetting": False
     },
     {
-        "name": "TG_API_HASH",
+        "name": "TLGM_API_HASH",
         "value": api_hash,
         "slotSetting": False
     },
     {
-        "name": "TG_SESSION",
+        "name": "TLGM_SESSION",
         "value": api_session,
         "slotSetting": False
     },
     {
-        "name": "TG_ENTITY",
+        "name": "TLGM_ENTITY",
         "value": entity,
         "slotSetting": False
     },
     {
-        "name": "TG_MESSAGE",
+        "name": "TLGM_MESSAGE",
         "value": message,
         "slotSetting": False
     }

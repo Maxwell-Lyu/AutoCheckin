@@ -19,8 +19,8 @@ if cookies.get('s_gkr8_f779_auth') is None:
 # dump json for local dev
 local = {
     "Values": {
-        "TS_AUTH": cookies['s_gkr8_f779_auth'],
-        "TS_SALTKEY": cookies['s_gkr8_f779_saltkey']
+        "TSDM_AUTH": cookies['s_gkr8_f779_auth'],
+        "TSDM_SALTKEY": cookies['s_gkr8_f779_saltkey']
     }
 }
 with open('local.settings.partial.json', 'w+') as file:
@@ -30,12 +30,12 @@ print('+ local.settings.partial.json: generated for local.settings.json, mix int
 # dump json for remote deploy
 remote = [
     {
-        "name": "TS_AUTH",
+        "name": "TSDM_AUTH",
         "value": cookies['s_gkr8_f779_auth'],
         "slotSetting": False
     },
     {
-        "name": "TS_SALTKEY",
+        "name": "TSDM_SALTKEY",
         "value": cookies['s_gkr8_f779_saltkey'],
         "slotSetting": False
     }
