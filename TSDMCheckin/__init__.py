@@ -11,8 +11,8 @@ def main(mytimer: func.TimerRequest) -> None:
     utc_timestamp = datetime.datetime.utcnow().replace(
         tzinfo=datetime.timezone.utc).isoformat()
 
-    auth = os.environ['TS_AUTH']
-    saltkey = os.environ['TS_SALTKEY']
+    auth = os.environ['TSDM_AUTH']
+    saltkey = os.environ['TSDM_SALTKEY']
 
     cookies = {
         's_gkr8_f779_auth': auth,

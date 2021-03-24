@@ -18,8 +18,8 @@ def main(mytimer: func.TimerRequest) -> None:
     logging.info('Python timer trigger function ran at %s', utc_timestamp)
 
     # const 
-    username = os.environ['NU_USER']
-    password = os.environ['NU_PASS']
+    username = os.environ['NJUA_USER']
+    password = os.environ['NJUA_PASS']
     url_encrypt = r'https://authserver.nju.edu.cn/authserver/custom/js/encrypt.js'
     url_login = r'https://authserver.nju.edu.cn/authserver/login'
     url_list = r'http://ehallapp.nju.edu.cn/xgfw/sys/yqfxmrjkdkappnju/apply/getApplyInfoList.do'

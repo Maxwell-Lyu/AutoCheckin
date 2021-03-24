@@ -11,7 +11,7 @@ def main(mytimer: func.TimerRequest) -> None:
     utc_timestamp = datetime.datetime.utcnow().replace(
         tzinfo=datetime.timezone.utc).isoformat()
 
-    sessdata = os.environ['BL_SESSDATA']
+    sessdata = os.environ['BILI_SESSDATA']
     response = requests.get('https://api.live.bilibili.com/sign/doSign', cookies={'SESSDATA': sessdata})
     content = json.loads(response.text)
     if content['code'] == 0:

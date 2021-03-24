@@ -7,11 +7,11 @@ from telethon.sessions import StringSession
 import azure.functions as func
 
 async def worker(loop):
-    api_id      = os.environ['TG_API_ID']
-    api_hash    = os.environ['TG_API_HASH']
-    api_session = os.environ['TG_SESSION']
-    entity      = os.environ['TG_ENTITY']
-    message     = os.environ['TG_MESSAGE']
+    api_id      = os.environ['TLGM_API_ID']
+    api_hash    = os.environ['TLGM_API_HASH']
+    api_session = os.environ['TLGM_SESSION']
+    entity      = os.environ['TLGM_ENTITY']
+    message     = os.environ['TLGM_MESSAGE']
     client = TelegramClient(StringSession(api_session), api_id, api_hash, loop=loop)
     await client.connect()
     async with client.conversation(entity=entity) as conv:

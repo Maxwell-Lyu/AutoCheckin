@@ -11,8 +11,8 @@ def main(mytimer: func.TimerRequest) -> None:
     utc_timestamp = datetime.datetime.utcnow().replace(
         tzinfo=datetime.timezone.utc).isoformat()
     # achieve secrets
-    auth =  os.environ['TS_AUTH']
-    saltkey =  os.environ['TS_SALTKEY']
+    auth =  os.environ['TSDM_AUTH']
+    saltkey =  os.environ['TSDM_SALTKEY']
     # build request parameters
     labor_url = 'https://www.tsdm39.net/plugin.php?id=np_cliworkdz:work'
     cookies = {
