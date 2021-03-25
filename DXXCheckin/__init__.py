@@ -40,6 +40,7 @@ def main(mytimer: func.TimerRequest) -> None:
     event = rows[0][0]
     if rows[0][1] == '已学习':
         logging.warning('Event %d:\'%s\' is already checked' % (id, event))
+        return
 
     # load token
     response = requests.get(url_confirm, cookies={'laravel_session': session})
