@@ -49,12 +49,12 @@ def main(mytimer: func.TimerRequest) -> None:
     soup = BeautifulSoup(response.text, 'html.parser')
     data_login = {
         'username':     username, 
-        'password':     context.encryptAES(password, soup.select_one("#pwdDefaultEncryptSalt").attrs['value']),
-        'lt' :          soup.select_one('[name="lt"]').attrs['value'], 
-        'dllt' :        soup.select_one('[name="dllt"]').attrs['value'], 
-        'execution' :   soup.select_one('[name="execution"]').attrs['value'], 
-        '_eventId' :    soup.select_one('[name="_eventId"]').attrs['value'], 
-        'rmShown' :     soup.select_one('[name="rmShown"]').attrs['value'], 
+        'password':     context.encryptAES(password, soup.select_one("#casLoginForm #pwdDefaultEncryptSalt").attrs['value']),
+        'lt' :          soup.select_one('#casLoginForm [name="lt"]').attrs['value'], 
+        'dllt' :        soup.select_one('#casLoginForm [name="dllt"]').attrs['value'], 
+        'execution' :   soup.select_one('#casLoginForm [name="execution"]').attrs['value'], 
+        '_eventId' :    soup.select_one('#casLoginForm [name="_eventId"]').attrs['value'], 
+        'rmShown' :     soup.select_one('#casLoginForm [name="rmShown"]').attrs['value'], 
     }
 
     response = session.post(url_login, data_login)
