@@ -91,6 +91,7 @@ def main(mytimer: func.TimerRequest) -> None:
 
     response = session.get(url_apply, params=data_apply)
 
+
     try:
         content = response.json()
     except ValueError:
